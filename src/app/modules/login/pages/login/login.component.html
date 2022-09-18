@@ -1,1 +1,35 @@
-<p>login works!</p>
+<section class="auth" #auth>
+    <div class="container">
+        <div class="blue-bg">
+            <div class="box signin">
+                <h2>¿Already have an Account?</h2>
+                <button class="signin-btn" #signInBtn (click)="setClassForm(0)">Sing In</button>
+            </div>
+            <div class="box signup">
+                <h2>¿Dont'n have an Account?</h2>
+                <button class="signup-btn" #signUpBtn (click)="setClassForm(1)">Sing Up</button>
+            </div>
+        </div>
+        <div class="form-box" #formBox>
+            <div class="form signin-form">
+                <form>
+                    <h3>Sing In</h3>
+                    <input type="text" placeholder="username">
+                    <input type="password" placeholder="password">
+                    <button>Login</button>
+                    <a href="#" class="forgot">Forgot your Password</a>
+                </form>
+            </div>
+            <div class="form signup-form">
+                <form>
+                    <h3>Sing Up</h3>
+                    <input type="text" placeholder="username">
+                    <input type="text" placeholder="Email Address">
+                    <button>Register</button>
+                </form>
+            </div>
+
+            
+        </div>
+    </div>
+</section>

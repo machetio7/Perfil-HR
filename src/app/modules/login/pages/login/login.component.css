@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+.auth{
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.5s;
+    @apply flex justify-center items-center min-h-screen bg-[#06386D];
+}
+
+.auth.active{
+    @apply bg-[#ABD4FF];
+}
+
+.auth .container{
+    @apply relative w-[800px] h-[500px] m-[20px];
+}
+
+.blue-bg{
+    background: rgba(255,255,255,0.2);
+    box-shadow: 0 5px 45px rgba(0,0,0,0.15);
+    @apply absolute top-[40px] w-[100%] h-[420px] flex justify-center items-center ;
+}
+
+.blue-bg .box{
+    @apply relative w-[50%] h-[100%] flex justify-center items-center flex-col
+}
+
+.blue-bg .box h2{
+    @apply text-white text-[1.2em] font-[500] mb-[10px];
+}
+
+.blue-bg .box button{
+    @apply cursor-pointer px-[20px] py-[10px] bg-white text-[#333] text-[16px] font-[500] border-none
+}
+
+.form-box{
+    box-shadow: 0 5px 45px rgba(0,0,0,0.25);
+    transition: 0.5s ease-in-out;
+    @apply absolute top-0 left-0 w-[50%] bg-white flex justify-center items-center h-[100%] z-[1000] overflow-hidden
+}
+
+.form-box.active{
+    @apply left-[50%]
+}
+
+.form-box .form{
+    transition: 0.5s;
+    @apply absolute left-0 w-[100%] p-[50px]
+}
+
+.form-box .signin-form{
+    transition-delay: 0.25s;
+}
+
+.form-box.active .signin-form{
+    left: -100%;
+    transition-delay: 0s;
+}
+
+.form-box .signup-form{
+    left: 100%;
+}
+
+.form-box.active .signup-form{
+    left: 0;
+}
+
+
+.form-box .form form{
+    @apply w-[100%] flex flex-col;
+}
+
+.form-box .form form h3{
+    @apply text-[1.5em] text-[#333] mb-[20px] font-[500]
+}
+
+.form-box .form form input{
+    border: 1px solid #333;
+    @apply w-full mb-[20px] p-[10px] outline-none text-[16px]
+}
+
+.form-box .form form button{
+    @apply bg-[#ABD4FF] border-none text-white max-w-[100px] cursor-pointer p-[10px] mb-[20px]
+}
+
+.form-box.active .signup-form form button{
+    @apply bg-[#06386D]
+}
+
+.form-box .form form a{
+    @apply text-[#333] underline
+}
+
+@media (max-width: 991px) {
+    .auth .container{
+        @apply max-w-[400px] h-[650px] flex justify-center items-center;
+    }
+
+    .container .blue-bg{
+        @apply top-0 h-[100%]
+    }
+
+    .form-box{
+        box-shadow: none;
+        @apply w-[100%] h-[500px] top-0;
+    }
+
+    .blue-bg .box{
+        @apply absolute w-full h-[150px] bottom-0
+    }
+
+    .box.signin{
+        @apply top-0
+    }
+
+    .form-box.active{
+        @apply left-0 top-[150px];
+    }
+}

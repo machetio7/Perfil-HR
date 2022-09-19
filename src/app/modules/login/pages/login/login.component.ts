@@ -25,4 +25,6 @@ export class LoginComponent implements OnInit {
       this.renderer.removeClass(this.auth.nativeElement, 'active');
     }
   }
+
+  
 }

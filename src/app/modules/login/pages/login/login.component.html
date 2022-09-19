@@ -12,11 +12,21 @@
         </div>
         <div class="form-box" #formBox>
             <div class="form signin-form">
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                     <h3>Sing In</h3>
-                    <input type="text" placeholder="username">
-                    <input type="password" placeholder="password">
-                    <button>Login</button>
+                    <div class="input-item">
+                        <input type="text" [ngClass]="{'error': loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid}" placeholder="username" formControlName="userName">
+                        <div *ngIf="loginForm.get('userName')?.touched && loginForm.get('userName')?.invalid" class="inputError">
+                            <small>This field is required.</small>
+                        </div>
+                    </div>
+                    <div class="input-item">
+                        <input type="password" placeholder="password" formControlName="password" [ngClass]="{'error': loginForm.get('password')?.touched && loginForm.get('password')?.invalid}">
+                        <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid" class="inputError">
+                            <small>This field is required.</small>
+                        </div>
+                    </div>
+                    <button type="submit">Login</button> 
                     <a href="#" class="forgot">Forgot your Password</a>
                 </form>
             </div>

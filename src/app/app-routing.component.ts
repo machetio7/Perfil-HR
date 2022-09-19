@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
-       path:'',
+       path:'login',
        loadChildren: async()=> (await import('./modules/login/login.module')).LoginModule 
     },
     {
@@ -11,8 +11,8 @@ const routes: Routes = [
        loadChildren: async()=> (await import('./modules/home/home.module')).HomeModule 
     },
     {
-        path:'**',
-        redirectTo: '/',
+        path:'',
+        redirectTo: '/login',
         pathMatch: 'full'
     }
 ];

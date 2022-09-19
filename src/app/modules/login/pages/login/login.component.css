@@ -73,9 +73,20 @@
     @apply text-[1.5em] text-[#333] mb-[20px] font-[500]
 }
 
-.form-box .form form input{
+.form-box .form form .input-item{
+    @apply relative
+}
+.form-box .form form .input-item input{
     border: 1px solid #333;
-    @apply w-full mb-[20px] p-[10px] outline-none text-[16px]
+    @apply w-full mb-[20px] p-[10px]  outline-none text-[16px]
+}
+
+.form-box .form form .input-item input.error{
+    border: 1px solid red;
+}
+
+.form-box .form form .inputError{
+    @apply text-[red] absolute  w-full text-right text-[14px] top-[42px] font-[500]
 }
 
 .form-box .form form button{

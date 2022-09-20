@@ -1,23 +1,34 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @ViewChild('formBox') formBox!: ElementRef;
   @ViewChild('signUpBtn') signUpBtn!: ElementRef;
   @ViewChild('signInBtn') signInBtn!: ElementRef;
   @ViewChild('auth') auth!: ElementRef;
+  userNamePattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+  loginForm = this.fb.group({
+    userName: [
+      '',
+      Validators.compose([
+        Validators.required,
+        Validators.pattern(this.userNamePattern),
+      ]),
+    ],
+    password: [
+      '',
+      Validators.compose([Validators.required, Validators.minLength(5)]),
+    ],
+  });
 
   account_validation_messages = {
     userName: [
@@ -32,11 +43,6 @@ export class LoginComponent implements OnInit {
       },
     ],
   };
-  userNamePattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
-  loginForm = this.fb.group({
-    userName: ['', Validators.compose([Validators.required, Validators.pattern(this.userNamePattern)])],
-    password: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
-  });
 
   get password(): FormControl {
     return this.loginForm.get('password') as FormControl;
@@ -49,10 +55,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private fire: AngularFirestore,
+    private authService: AuthService
   ) {}
-
-  ngOnInit(): void {}
 
   setClassForm(type: number) {
     if (type === 1) {
@@ -66,7 +72,17 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.router.navigate(['/home']);
+      this.authService.getLogin(this.userName.value, this.password.value).then(()=>{
+        this.router.navigate(['/home'])
+      }).catch((error)=>
+        console.warn(error ,' - El usuario no esta en la base de datos')
+      )
     }
   }
+
+  signOut(){
+    localStorage.removeItem('userId');
+    this.authService.logOut();
+  }
+
 }

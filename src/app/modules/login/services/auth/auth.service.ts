@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
@@ -16,9 +17,12 @@ export class AuthService {
     this._isLogging = value;
   }
 
-  constructor( public _auth:AngularFireAuth, private _router:Router) { }
+  constructor( public _auth:AngularFireAuth, private _router:Router, private http: HttpClient) { }
 
   async getLogin(email: string, pass:string){
+    this.http.get('https://api.covidtracking.com/v1/us/current.json').subscribe((resp)=>{
+      console.warn(resp)
+    });
     await this._auth.signInWithEmailAndPassword(email, pass).then(resp=>{
       localStorage.setItem('userId', JSON.stringify(resp.user))
     })

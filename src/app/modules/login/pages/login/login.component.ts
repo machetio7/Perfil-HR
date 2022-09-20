@@ -1,5 +1,4 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
@@ -56,7 +55,6 @@ export class LoginComponent {
     private renderer: Renderer2,
     private router: Router,
     private fb: FormBuilder,
-    private fire: AngularFirestore,
     private authService: AuthService
   ) {}
 
@@ -72,17 +70,14 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.authService.getLogin(this.userName.value, this.password.value).then(()=>{
-        this.router.navigate(['/home'])
-      }).catch((error)=>
-        console.warn(error ,' - El usuario no esta en la base de datos')
-      )
+      this.authService
+        .getLogin(this.userName.value, this.password.value)
+        .then(() => {
+          this.router.navigate(['/home']);
+        })
+        .catch((error) =>
+          console.warn(error, ' - El usuario no esta en la base de datos')
+        );
     }
   }
-
-  signOut(){
-    localStorage.removeItem('userId');
-    this.authService.logOut();
-  }
-
 }

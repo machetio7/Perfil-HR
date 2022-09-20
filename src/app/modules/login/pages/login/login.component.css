@@ -85,8 +85,8 @@
     border: 1px solid red;
 }
 
-.form-box .form form .inputError{
-    @apply text-[red] absolute  w-full text-right text-[14px] top-[42px] font-[500]
+.form-box .form.signin-form form .input-item span .inputError{
+    @apply text-[red] absolute text-[12px] top-[45px] font-[400] right-0
 }
 
 .form-box .form form button{

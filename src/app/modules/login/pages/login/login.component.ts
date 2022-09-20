@@ -5,7 +5,7 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,10 +19,32 @@ export class LoginComponent implements OnInit {
   @ViewChild('signInBtn') signInBtn!: ElementRef;
   @ViewChild('auth') auth!: ElementRef;
 
+  account_validation_messages = {
+    userName: [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Enter a valid email' },
+    ],
+    password: [
+      { type: 'required', message: 'Password is required' },
+      {
+        type: 'minlength',
+        message: 'Password must be at least 5 characters long',
+      },
+    ],
+  };
+  userNamePattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
   loginForm = this.fb.group({
-    userName: ['', Validators.required],
-    password: ['', Validators.required],
+    userName: ['', Validators.compose([Validators.required, Validators.pattern(this.userNamePattern)])],
+    password: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
   });
+
+  get password(): FormControl {
+    return this.loginForm.get('password') as FormControl;
+  }
+
+  get userName(): FormControl {
+    return this.loginForm.get('userName') as FormControl;
+  }
 
   constructor(
     private renderer: Renderer2,
@@ -45,6 +67,6 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       this.router.navigate(['/home']);
-    }     
+    }
   }
 }

@@ -17,13 +17,10 @@ export class AuthService {
     this._isLogging = value;
   }
 
-  constructor( public _auth:AngularFireAuth, private _router:Router, private http: HttpClient) { }
+  constructor( private _auth:AngularFireAuth, private _router:Router, private http: HttpClient) { }
 
   async getLogin(email: string, pass:string){
-    this.http.get('https://api.covidtracking.com/v1/us/current.json').subscribe((resp)=>{
-      console.warn(resp)
-    });
-    await this._auth.signInWithEmailAndPassword(email, pass).then(resp=>{
+    await this._auth.signInWithEmailAndPassword(email, pass).then((resp:any)=>{
       localStorage.setItem('userId', JSON.stringify(resp.user))
     })
   }

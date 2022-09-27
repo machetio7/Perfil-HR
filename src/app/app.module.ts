@@ -11,6 +11,7 @@ import { AngularFirestoreModule  } from "@angular/fire/compat/firestore";
 import { environment } from 'src/environments/environment';
 import { HttpInterceptorInterceptor } from './shared/interceptor/http-interceptor.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AngularFirestoreModule,
     BrowserModule,
     HttpClientModule,
-    appRoutes
+    appRoutes,
+    BrowserAnimationsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorInterceptor, multi: true}],
   bootstrap: [AppComponent]

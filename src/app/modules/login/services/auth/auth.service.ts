@@ -22,11 +22,6 @@ export class AuthService {
   constructor( private _auth:AngularFireAuth, private _router:Router, private http: HttpClient, private _db:AngularFirestore) { }
 
   async getLogin(email: string, pass:string){
-    this._db.collection('contactos', ref => ref.where('members', 'array-contains', 'jeQXzqE7REQ9wNV0Jwgz'))
-    .snapshotChanges().pipe(map(actions => actions.map( a =>{
-      return a.payload.doc.data()
-    }))).subscribe(console.log)
-
     await this._auth.signInWithEmailAndPassword(email, pass).then((resp:any)=>{
       localStorage.setItem('userId', JSON.stringify(resp.user))
     })

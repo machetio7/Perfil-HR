@@ -73,7 +73,7 @@ export class LoginComponent {
       this.authService
         .getLogin(this.userName.value, this.password.value)
         .then(() => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home','user']);
         })
         .catch((error) =>
           console.warn(error, ' - El usuario no esta en la base de datos')

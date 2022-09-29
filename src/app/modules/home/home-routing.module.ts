@@ -10,7 +10,13 @@ const routes: Routes = [
     path:'',
     component: HomeComponent,
     canActivate: [AngularFireAuthGuard],
-    data:{ authGuardPipe: redirectUnauthorizedToLogin}
+    data:{ authGuardPipe: redirectUnauthorizedToLogin},
+    children:[
+      {
+        path: 'user',
+        loadChildren: async()=> (await import('../user/user.module')).UserModule
+      }
+    ]
   }
 ];
 

@@ -9,7 +9,7 @@ import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFirestoreModule  } from "@angular/fire/compat/firestore";
 
 import { environment } from 'src/environments/environment';
-import { HttpInterceptorInterceptor } from './shared/interceptor/http-interceptor.interceptor';
+import { HttpInterceptorInterceptor } from './core/interceptor/http-interceptor.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';

@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
+import { exhaustMap, map, Observable } from 'rxjs';
+import { IContact } from 'src/app/data/interfaces/contact';
 
 @Injectable({
   providedIn: 'root'
@@ -27,11 +28,12 @@ export class AuthService {
     })
   }
 
-  getData(){
-    this._db.collection('contactos', ref => ref.where('members', 'array-contains', 'jeQXzqE7REQ9wNV0Jwgz'))
+  getData():Observable<any>{
+    return this._db.collection('contactos', ref => ref.where('members', 'array-contains', 'jeQXzqE7REQ9wNV0Jwgz'))
     .snapshotChanges().pipe(map(actions => actions.map( a =>{
       return a.payload.doc.data()
-    }))).subscribe(console.log)
+    })))
+    
   }
   isAuth():string | null {
     return localStorage.getItem('userId');

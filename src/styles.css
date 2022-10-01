@@ -9,3 +9,10 @@
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.skeleton-content {
+    min-height: calc(100vh - 80px);
+}
+p{
+    margin: 0 !important;
+}

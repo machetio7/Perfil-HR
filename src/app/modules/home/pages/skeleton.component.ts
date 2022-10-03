@@ -1,5 +1,5 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { map, Observable, shareReplay } from 'rxjs';
 import { AuthService } from '../../../shared/services/auth/auth.service';
 
@@ -8,8 +8,7 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
   templateUrl: './skeleton.component.html',
   styleUrls: ['./skeleton.component.css'],
 })
-export class skeletonComponent implements OnInit {
-  ngOnInit(): void {}
+export class SkeletonComponent {
   closeSession:boolean = false;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

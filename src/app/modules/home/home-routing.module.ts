@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
-import { skeletonComponent } from './pages/skeleton.component';
+import { SkeletonComponent } from './pages/skeleton.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
     path:'',
-    component: skeletonComponent,
+    component: SkeletonComponent,
     canActivate: [AngularFireAuthGuard],
     data:{ authGuardPipe: redirectUnauthorizedToLogin},
     children:[

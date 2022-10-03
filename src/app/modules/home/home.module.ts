@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
-import { skeletonComponent } from './pages/skeleton.component';
+import { SkeletonComponent } from './pages/skeleton.component';
 import {MatIconModule} from '@angular/material/icon';
 
 import { LayoutModule } from '@angular/cdk/layout';
@@ -16,7 +16,7 @@ import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
-    skeletonComponent,
+    SkeletonComponent,
     DashboardComponent
   ],
   imports: [

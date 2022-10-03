@@ -28,6 +28,7 @@ export class ListUserComponent implements OnInit {
     this.dataSrv.getData().subscribe((resp) => {
       this.data = resp;
       this.display = true
+      console.log(this.data);
     });
   }
 }

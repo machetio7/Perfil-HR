@@ -6,37 +6,13 @@
 
 <div class="example-container mat-elevation-z8">
 
-  <mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="contacto">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Contacto </mat-header-cell>
-      <mat-cell *matCellDef="let element" data-label="Contacto"> {{element.contacto}} </mat-cell>
-    </ng-container>
+  <mat-table [dataSource]="dataSource" matSort >
 
-    <ng-container matColumnDef="correo">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Correo </mat-header-cell>
-      <mat-cell *matCellDef="let element" data-label="Correo"> {{element.correo}} </mat-cell>
+    <ng-container [matColumnDef]="header" *ngFor="let header of displayedColumns">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[header]}} </mat-cell>
     </ng-container>
-  
-
-    <ng-container matColumnDef="empresa">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Empresa </mat-header-cell>
-      <mat-cell *matCellDef="let element" data-label="Empresa"> {{element.empresa}} </mat-cell>
-    </ng-container>
-  
-    <ng-container matColumnDef="observaciones">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Observaciones </mat-header-cell>
-      <mat-cell *matCellDef="let element" data-label="Obs."> {{element.observaciones}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="referencia">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Referencia </mat-header-cell>
-      <mat-cell *matCellDef="let element" data-label="Ref."> {{element.referencia}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="telefono">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </mat-header-cell>
-      <mat-cell *matCellDef="let element" data-label="Tel."> {{element.telefono}} </mat-cell>
-    </ng-container>
-  
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;">

@@ -10,7 +10,7 @@ import { AuthService } from '../../../shared/services/auth/auth.service';
 })
 export class skeletonComponent implements OnInit {
   ngOnInit(): void {}
-
+  closeSession:boolean = false;
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(

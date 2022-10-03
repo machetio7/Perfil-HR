@@ -1,18 +1,26 @@
 .sidenav-container {
     height: 100%;
   }
-  
+
   .sidenav {
     width: 200px;
   }
-  
+
   .sidenav .mat-toolbar {
     background: inherit;
   }
-  
+
   .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
     z-index: 1;
   }
-  
+
+  .no-active-menu{
+    @apply right-[25px] opacity-100 cursor-pointer;
+  }
+
+  .no-active-menu:hover{
+    @apply bg-orange text-white;
+  }
+

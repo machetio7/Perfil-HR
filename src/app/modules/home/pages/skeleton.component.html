@@ -13,18 +13,27 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-      <mat-toolbar color="primary">
-        <button
-          type="button"
-          aria-label="Toggle sidenav"
-          mat-icon-button
-          (click)="drawer.toggle()"
-          *ngIf="isHandset$ | async">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
-        <span>perfilHR</span>
+      <mat-toolbar class="bg-blue-Primary text-white flex justify-between">
+        <div>
+          <button
+            type="button"
+            aria-label="Toggle sidenav"
+            mat-icon-button
+            (click)="drawer.toggle()"
+            *ngIf="isHandset$ | async">
+            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+          </button>
+          <figure class="w-[350px]">
+            <img src="./assets/logo.webp" alt="logo perfilhr">
+          </figure>
+        </div>
+        <div class="bg-white rounded-full flex flex-col justify-center items-center w-[40px] h-[40px]" (click)="closeSession = !closeSession">
+          <mat-icon aria-hidden="false" aria-label="user icon" fontIcon="person" class="text-black relative"></mat-icon>
+          <div class="bg-blue-Primary h-[30px] w-[100] absolute duration-150 p-2 top-[65px] right-[0px] opacity-0 z-0 shadow-md" [ngClass]="{'no-active-menu': closeSession}">
+            <p class="text-white relative text-xs" (click)="signOut()">Cerrar Sesión</p>
+          </div>
+        </div>
       </mat-toolbar>
       <app-dashboard></app-dashboard>
-      <!-- <router-outlet></router-outlet> -->
     </mat-sidenav-content>
   </mat-sidenav-container>

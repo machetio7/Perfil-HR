@@ -11,12 +11,14 @@ export class ListUserComponent implements OnInit {
   data: IContact[] = [];
   display: boolean = false;
   displayedColumns: string[] = [
+    "no",
     "contacto",
     "correo",
     "empresa",
     "observaciones",
     "referencia",
     "telefono",
+    "acciones"
   ];
   constructor(private dataSrv: AuthService) {}
 
@@ -28,7 +30,11 @@ export class ListUserComponent implements OnInit {
     this.dataSrv.getData().subscribe((resp) => {
       this.data = resp;
       this.display = true
-      console.log(this.data);
+      this.data.forEach((element, index)=>{
+        element.no = index + 1 ;
+        element.acciones = ['edit','delete','shared'] 
+      })
+      console.log(this.data)
     });
   }
 }

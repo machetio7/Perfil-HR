@@ -1,22 +1,37 @@
-
 <mat-form-field appearance="standard">
   <mat-label>Buscar....</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ej. cliente" #input>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Ej. cliente"
+    #input
+  />
 </mat-form-field>
 
 <div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+    
+    <ng-container
+      [matColumnDef]="header"
+      *ngFor="let header of displayedColumns"
+    >
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>
+        {{ header | titlecase}}
+      </mat-header-cell>
 
+      <mat-cell *matCellDef="let element">
+        <p *ngIf="header !== 'acciones'">
+          {{ element[header] }}
+        </p>
+        <button *ngIf="header === 'acciones'">
+          <mat-icon *ngFor="let action of element[header]">{{action}}</mat-icon>
+        </button>
+      </mat-cell>
 
-  <mat-table [dataSource]="dataSource" matSort >
-
-    <ng-container [matColumnDef]="header" *ngFor="let header of displayedColumns">
-      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header> {{header}} </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element[header]}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;">
-    </mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
   </mat-table>
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

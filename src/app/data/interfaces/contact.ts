@@ -1,4 +1,5 @@
 export interface IContact {
+  no: number,
   observaciones: string;
   referencia: string;
   contacto: string;
@@ -7,4 +8,5 @@ export interface IContact {
   correo: string;
   telefono: string;
   empresa: string;
+  acciones: string[]
 }

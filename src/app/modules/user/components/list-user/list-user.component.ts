@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IContact } from 'src/app/data/interfaces/contact';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import {MatDialog} from '@angular/material/dialog';
+import { AddUserComponent } from '../add-user/add-user.component';
 
 @Component({
   selector: 'app-list-user',
@@ -20,13 +22,17 @@ export class ListUserComponent implements OnInit {
     "telefono",
     "acciones"
   ];
-  constructor(private dataSrv: AuthService) {}
+  constructor(private dataSrv: AuthService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.getContact();
   }
 
+  openDialog() {
+    this.dialog.open(AddUserComponent);
+  }
   async getContact() {
+    console.warn('testing')
     this.dataSrv.getData().subscribe((resp) => {
       this.data = resp;
       this.display = true
@@ -38,3 +44,4 @@ export class ListUserComponent implements OnInit {
     });
   }
 }
+

@@ -19,12 +19,14 @@
         {{ header | titlecase}}
       </mat-header-cell>
 
-      <mat-cell *matCellDef="let element">
+      <mat-cell *matCellDef="let element"  [attr.data-label]="header">
         <p *ngIf="header !== 'acciones'">
           {{ element[header] }}
         </p>
         <button *ngIf="header === 'acciones'">
-          <mat-icon *ngFor="let action of element[header]">{{action}}</mat-icon>
+          <mat-icon *ngFor="let action of element[header]" 
+          [ngClass]="{'text-blue-Primary':action==='edit', 'text-red-700':action==='delete', 'text-green-700':action==='shared'}">
+          {{action}}</mat-icon>
         </button>
       </mat-cell>
 
@@ -36,3 +38,4 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 </div>
+

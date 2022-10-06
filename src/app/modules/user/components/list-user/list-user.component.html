@@ -1,3 +1,19 @@
 <div class="skeleton-content h-full w-full p-8">
-    <app-table [dataTable]="data" [displayedColumns]="displayedColumns" *ngIf="display"></app-table>
+  <button
+    class="bg-orange text-white cursor-pointer py-3 px-8 ml-5 rounded-md shadow-md absolute right-[50px]"
+    (click)="openDialog()"
+    >
+    
+  <div class="flex justify-center items-center gap-x-4">
+      <mat-icon>person_add</mat-icon>
+      <p class="sm:hidden">Primary</p>
+    </div>
+
+  </button>
+  <app-table
+    [dataTable]="data"
+    [displayedColumns]="displayedColumns"
+    *ngIf="display"
+  ></app-table>
 </div>
+
